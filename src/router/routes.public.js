@@ -17,6 +17,10 @@ const NotFound = React.lazy(() =>
     import(/* webpackChunkName: "NotFound" */ '../pages/NotFound')
 )
 
+const MovieReviews = React.lazy( ()=> 
+    import(/* webpackChunkName: "AllMoviesReviews" */ '../pages/MyReviews/MoviesReviews/AllMoviesReviews')
+)
+
 const publicRoutes = [
     {
         path: paths.HOME_PAGE,
@@ -34,12 +38,18 @@ const publicRoutes = [
         component: CrearCriticaPage
     },
     {
+        path: paths.GET_MOVIE_REVIEWS,
+        exact: true,
+        component: MovieReviews
+    },
+    {
         path: paths.NOT_FOUND,
         exact: true,
         component: NotFound
     },
     
-]
+    
+] 
 
 
 export default publicRoutes
