@@ -1,16 +1,18 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import { CssBaseline, Drawer, AppBar, Toolbar, List, Typography, Divider, IconButton, Badge, Container, Link } from '@material-ui/core'
+import { Accordion, AccordionSummary, AccordionDetails, CssBaseline, Drawer, AppBar, Toolbar, List, Typography, Divider, IconButton, Badge, Container, Link } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Router from '../../router';
-import MainListItems from './miscarpetas/MainListItems'
+import MainListItems from './foldersMovie/MainListItems'
 import SecondaryListItems from './misfunciones/SecondaryListItems';
-import drawerImg from '../../assets/img/sidebar2.jpg'; 
+import drawerImg from '../../assets/img/sidebar2.jpg';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 function Copyright() {
   return (
@@ -56,6 +58,11 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
+  account: {
+    display: "grid",
+    marginBottom: 20,
+    marginLeft: 25,
+  },
   menuButton: {
     marginRight: 36,
   },
@@ -65,17 +72,17 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-  drawerPaper: { 
+  drawerPaper: {
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
-    color:'white',
+    color: 'white',
     background: `#f2f4fb`,
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen, 
+      duration: theme.transitions.duration.enteringScreen,
     }),
   },
   drawerPaperClose: {
@@ -144,20 +151,26 @@ export default function Dashboard() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             ForoCritics
           </Typography>
-          <Typography component="h1" variant="body2" color="inherit" noWrap>
-            Ezequiel Lopez
-          </Typography>
-          <IconButton color="inherit">
-              <AccountBoxIcon />
-          </IconButton>
+
+
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton color="inherit">
+
+          <div className={clsx(classes.account)}>
+            <IconButton color="inherit">
+              <AccountCircleIcon fontSize="large"/>
+            </IconButton>
+            <Typography component="h1" variant="body2" color="inherit" noWrap>
+              Ezequiel Lopez
+          </Typography>
+          </div>
+
+          {/* <IconButton color="inherit">
             <ExitToAppIcon />
-          </IconButton>
+          </IconButton> */}
         </Toolbar>
       </AppBar>
       <Drawer
@@ -175,7 +188,7 @@ export default function Dashboard() {
         <Divider />
         <List>{<MainListItems />}</List>
         <Divider />
-        <List>{<SecondaryListItems/>}</List>
+        <List>{<SecondaryListItems />}</List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
